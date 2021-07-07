@@ -29,6 +29,12 @@ const App = () => {
     console.log(selectedItems)
   };
 
+  const removeItem = (e, item) => {
+    e.preventDefault();
+    const newList = selectedItems.filter((selectedItem) => selectedItem != item);
+    setSelectedItems(newList);
+  }
+
   return (
     <div className="wrapper">
       <div className="menu-summary">
@@ -81,7 +87,7 @@ const App = () => {
                     </span>
                   )}
                 </p>
-                <button className="remove-item">x</button>
+                <button className="remove-item" onClick={(e) => removeItem(e, selectedItem)}>x</button>
               </li>
             </ul>
           )}
