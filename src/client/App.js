@@ -6,6 +6,7 @@ const App = () => {
   const [items, setItems] = useState([])
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState(true)
+  const [selectedItems, setSelectedItems] = useState([])
 
   useEffect(() => {
     setIsLoading(true)
@@ -19,6 +20,12 @@ const App = () => {
             setError(error)
         })
   }, [])
+
+  const selectItem = (e ,item) => {
+    e.preventDefault();
+    setSelectedItems(selectedItems.concat(item))
+    console.log(selectedItems)
+  };
 
   return (
     <div className="wrapper">
@@ -43,7 +50,7 @@ const App = () => {
               <input className="form-control" placeholder="Name" />
             </div>
             {items.map(item => 
-            <ul key={item.id} className="item-picker">
+            <ul key={item.id} className="item-picker" onClick={(e) => selectItem(e, item)}>
               <li className="item">
                 <h2>{item.name}</h2>
                 <p>
@@ -54,8 +61,29 @@ const App = () => {
                   )}
                 </p>
               </li>
-            </ul>)}
+            </ul>
+          )}
           </div>
+
+          <div className="col-8">
+          <h2>Menu preview</h2>
+          
+          {selectedItems.map(selectedItem => 
+            <ul key={selectedItem.id} className="menu-preview">
+              <li className="item">
+                <h2>{selectedItem.name}</h2>
+                <p>
+                  {selectedItem.dietaries.map(dietary => 
+                    <span className="dietary" key={dietary.id}>
+                      {dietary}
+                    </span>
+                  )}
+                </p>
+                <button className="remove-item">x</button>
+              </li>
+            </ul>
+          )}
+        </div>
         </div>
       </div>
     </div>
