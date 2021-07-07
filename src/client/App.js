@@ -23,7 +23,9 @@ const App = () => {
 
   const selectItem = (e ,item) => {
     e.preventDefault();
-    setSelectedItems(selectedItems.concat(item))
+    if(!selectedItems.includes(item)){
+      setSelectedItems(selectedItems.concat(item))
+    }
     console.log(selectedItems)
   };
 
