@@ -12,7 +12,7 @@ const App = () => {
     axios.get("http://localhost:8080/api/items")
         .then(response => {
           setItems(response.data.items)
-          console.log(items)
+          console.log(response)
           setIsLoading(false)
         })
         .catch(() => {
@@ -47,9 +47,11 @@ const App = () => {
               <li className="item">
                 <h2>{item.name}</h2>
                 <p>
-                  <span className="dietary">ve</span>
-                  <span className="dietary">v</span>
-                  <span className="dietary">n!</span>
+                  {item.dietaries.map(dietary => 
+                    <span className="dietary" key={dietary.id}>
+                      {dietary}
+                    </span>
+                  )}
                 </p>
               </li>
             </ul>)}
