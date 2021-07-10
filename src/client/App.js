@@ -4,17 +4,15 @@ import './App.css';
 
 const App = () => {
   const [items, setItems] = useState([])
-  const [isLoading, setIsLoading] = useState(true)
+  const [searchTerm, setSearchTerm] = useState('')
   const [error, setError] = useState(true)
   const [selectedItems, setSelectedItems] = useState([])
 
   useEffect(() => {
-    setIsLoading(true)
     axios.get("http://localhost:8080/api/items")
         .then(response => {
           setItems(response.data.items)
           console.log(response)
-          setIsLoading(false)
         })
         .catch(() => {
             setError(error)
@@ -24,15 +22,22 @@ const App = () => {
   const selectItem = (e ,item) => {
     e.preventDefault();
     if(!selectedItems.includes(item)){
-      setSelectedItems(selectedItems.concat(item))
-    }
-    console.log(selectedItems)
+      setSelectedItems(selectedItems.concat(item))  
+    } 
   };
 
   const removeItem = (e, item) => {
     e.preventDefault();
-    const newList = selectedItems.filter((selectedItem) => selectedItem != item);
-    setSelectedItems(newList);
+    const newSelectedItemsList = selectedItems.filter((selectedItem) => selectedItem != item);
+    setSelectedItems(newSelectedItemsList);
+
+    // const newSelectedDietariesList = selectedDietaries.filter((selectedItem) => selectedItem.dietaries != item.dietaries);
+    // setSelectedDietaries(newSelectedDietariesList);
+    // groupDietaries()
+  }
+
+  const handleChange = (e) => {
+    setSearchTerm(e.target.value)
   }
 
   return (
@@ -41,23 +46,27 @@ const App = () => {
         <div className="container">
           <div className="row">
             <div className="col-6 menu-summary-left">
-              <span>6 items</span>
+            <span>{selectedItems.length}</span>
             </div>
             <div className="col-6 menu-summary-right">
-              6x <span className="dietary">ve</span>
-              4x <span className="dietary">v</span>
-              12x <span className="dietary">n!</span>
+             
             </div>
           </div>
         </div>
       </div>
       <div className="container menu-builder">
         <div className="row">
-          <div className="col-4">
+          <div className="col-5">
             <div className="filters">
-              <input className="form-control" placeholder="Name" />
+              <input id="search-bar" className="form-control" placeholder="Name" onChange={handleChange} />
             </div>
-            {items.map(item => 
+            {items.filter((val) => {
+              if(val == "") {
+                return val
+              } else if(val.name.toLowerCase().includes(searchTerm.toLowerCase())) {
+                return val
+              }
+            }).map(item => 
             <ul key={item.id} className="item-picker" onClick={(e) => selectItem(e, item)}>
               <li className="item">
                 <h2>{item.name}</h2>
@@ -73,7 +82,7 @@ const App = () => {
           )}
           </div>
 
-          <div className="col-8">
+          <div className="col-7">
           <h2>Menu preview</h2>
           
           {selectedItems.map(selectedItem => 
