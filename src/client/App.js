@@ -5,7 +5,6 @@ import "./App.css";
 
 import MenuContainer from "./MenuContainer";
 import Header from "./Header";
-import SearchBar from "./SearchBar";
 
 const App = () => {
   const [items, setItems] = useState([]);
@@ -33,12 +32,11 @@ const App = () => {
         selectedItems={selectedItems}
         groupedDietaries={groupedDietaries}
       />
-      <SearchBar query={query} setQuery={setQuery} />
       <MenuContainer
         items={items}
         selectedItems={selectedItems}
         setSelectedItems={setSelectedItems}
-        getQuery={query}
+        query={query}
         setQuery={setQuery}
       />
     </div>

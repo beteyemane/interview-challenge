@@ -1,8 +1,15 @@
 import React, { useState } from "react";
 
 import MenuItemCard from "./MenuItemCard";
+import SearchBar from "./SearchBar";
 
-const MenuItemsContainer = ({ items, selectedItems, setSelectedItems }) => {
+const MenuItemsContainer = ({
+  items,
+  selectedItems,
+  setSelectedItems,
+  query,
+  setQuery,
+}) => {
   const selectItem = (e, item) => {
     e.preventDefault();
     if (!selectedItems.includes(item)) {
@@ -12,6 +19,7 @@ const MenuItemsContainer = ({ items, selectedItems, setSelectedItems }) => {
 
   return (
     <div className="col-5">
+      <SearchBar query={query} setQuery={setQuery} />
       {items.map((item) => (
         <MenuItemCard item={item} selectItem={selectItem} />
       ))}

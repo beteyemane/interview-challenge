@@ -3,7 +3,6 @@ import React from "react";
 const SearchBar = ({ query, setQuery }) => {
   const onChange = (q) => {
     setQuery(q);
-    console.log("q", q);
   };
 
   return (

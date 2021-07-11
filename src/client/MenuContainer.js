@@ -7,7 +7,7 @@ const MenuContainer = ({
   items,
   selectedItems,
   setSelectedItems,
-  getQuery,
+  query,
   setQuery,
 }) => {
   return (
@@ -17,7 +17,7 @@ const MenuContainer = ({
           items={items}
           selectedItems={selectedItems}
           setSelectedItems={setSelectedItems}
-          getQuery={getQuery}
+          query={query}
           setQuery={setQuery}
         />
         <MenuPreviewContainer
