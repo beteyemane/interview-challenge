@@ -1,6 +1,6 @@
 import React from "react";
 
-import DietaryList from "./DietaryList";
+import DietarySummary from "../DietarySummary/DietarySummary";
 
 const Header = ({ selectedItems }) => {
   return (
@@ -10,7 +10,7 @@ const Header = ({ selectedItems }) => {
           <div className="col-6 menu-summary-left">
             <span>{selectedItems.length}</span>
           </div>
-          <DietaryList selectedItems={selectedItems} />
+          <DietarySummary selectedItems={selectedItems} />
         </div>
       </div>
     </div>

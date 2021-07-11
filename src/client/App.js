@@ -9,9 +9,6 @@ import Header from "./components/Header/Header";
 const App = () => {
   const [items, setItems] = useState([]);
   const [selectedItems, setSelectedItems] = useState([]);
-  const [selectedDietaries, setSelectedDietaries] = useState([]);
-  const [groupedDietaries, setGroupedDietaries] = useState({});
-  const [error, setError] = useState(true);
   const [query, setQuery] = useState("");
 
   useEffect(() => {
@@ -19,19 +16,12 @@ const App = () => {
       .get(`http://localhost:8080/api/items?search=${query}`)
       .then((response) => {
         setItems(response.data.items);
-        console.log("query", query);
-      })
-      .catch(() => {
-        setError(error);
       });
   }, [query]);
 
   return (
     <div className="wrapper">
-      <Header
-        selectedItems={selectedItems}
-        groupedDietaries={groupedDietaries}
-      />
+      <Header selectedItems={selectedItems} />
       <MenuContainer
         items={items}
         selectedItems={selectedItems}

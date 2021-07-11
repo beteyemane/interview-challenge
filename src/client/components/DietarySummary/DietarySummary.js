@@ -16,7 +16,7 @@ const groupDietaries = (items) => {
   }, {});
 };
 
-const DietaryList = ({ selectedItems }) => {
+const DietarySummary = ({ selectedItems }) => {
   return (
     <div className="col-6 menu-summary-right">
       {Object.entries(groupDietaries(selectedItems)).map(([key, value]) => (
@@ -28,4 +28,4 @@ const DietaryList = ({ selectedItems }) => {
   );
 };
 
-export default DietaryList;
+export default DietarySummary;
