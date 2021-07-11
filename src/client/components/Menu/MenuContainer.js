@@ -1,7 +1,7 @@
 import React from "react";
 
 import MenuItemsContainer from "./MenuItemsContainer";
-import MenuPreviewContainer from "./MenuPreviewContainer";
+import MenuPreviewContainer from "../MenuPreview/MenuPreviewContainer";
 
 const MenuContainer = ({
   items,

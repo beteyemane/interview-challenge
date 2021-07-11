@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import MenuItemCard from "./MenuItemCard";
-import SearchBar from "./SearchBar";
+import SearchBar from "../SearchBar/SearchBar";
 
 const MenuItemsContainer = ({
   items,

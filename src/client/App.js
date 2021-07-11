@@ -3,8 +3,8 @@ import axios from "axios";
 
 import "./App.css";
 
-import MenuContainer from "./MenuContainer";
-import Header from "./Header";
+import MenuContainer from "./components/Menu/MenuContainer";
+import Header from "./components/Header/Header";
 
 const App = () => {
   const [items, setItems] = useState([]);
