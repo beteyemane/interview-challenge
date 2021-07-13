@@ -21,6 +21,7 @@ const App = () => {
 
   return (
     <div className="wrapper">
+      <span>6 times</span>
       <Header selectedItems={selectedItems} />
       <MenuContainer
         items={items}
